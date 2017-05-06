@@ -1,0 +1,35 @@
+#ci.gocd.yaml
+environments:
+  itzero-uat:
+    pipelines:
+      - itzero-uat
+pipelines:
+  itzero-uat:
+    group: itzero # note that the group name can contain only of alphanumeric & underscore characters
+    materials:
+      src:
+        git: https://github.com/Hippoom/itzero-ops.git
+      build-upstream:
+        pipeline: itzero-build
+        stage: build
+    stages:
+      - deploy:
+          jobs:
+            deploy:
+              resources:
+               - jdk8
+              artifacts:
+               - build:
+                   source: build/version
+                   destination: build
+               tabs:
+                build_info: build/resources/main/META-INF/build-info.properties
+              tasks:
+               - script: rm -rf build # cleanup
+               - fetch:
+                   pipeline: itzero-build
+                   stage: build
+                   job: build
+                   source: build/version
+                   destination: build
+               - script: ./scripts/fetch-artifacts.sh
