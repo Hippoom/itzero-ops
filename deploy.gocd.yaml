@@ -22,8 +22,8 @@ pipelines:
                - build:
                    source: build/version
                    destination: build
-               tabs:
-                build_info: build/resources/main/META-INF/build-info.properties
+              tabs:
+                build_info: build/version
               tasks:
                - script: rm -rf build # cleanup
                - fetch:
