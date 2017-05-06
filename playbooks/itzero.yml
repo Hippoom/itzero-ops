@@ -1,0 +1,6 @@
+---
+
+- name: Deploy itzero
+  hosts: itzero-nodes
+  roles:
+    - itzero-service

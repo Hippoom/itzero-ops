@@ -1,0 +1,28 @@
+---
+
+- name: Ensure jar and yaml is ready
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode }}"
+  with_items:
+    - { src: "{{ WORKSPACE }}/profiles/{{ PROFILE }}/itzero.conf", dest: "/home/vagrant/", mode: "u=rw,g=r" }
+    - { src: "{{ WORKSPACE }}/profiles/{{ PROFILE }}/application-{{ PROFILE }}.yml", dest: "/home/vagrant/", mode: "u=rw,g=r" }
+    - { src: "{{ WORKSPACE }}/build/libs/itzero.jar", dest: "/home/vagrant/", mode: "u=rwx,g=rx" }
+  notify:
+    - restart itzero
+
+- name: Ensure service is ready
+  file:
+    src: /home/vagrant/itzero.jar
+    dest: /etc/init.d/itzero
+    state: link
+  become: true
+
+
+- name: Ensure itzero service is up
+  service:
+    name: itzero
+    state: started
+  become: true
+

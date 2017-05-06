@@ -10,3 +10,4 @@ build/
 application-dev.yml
 logs
 .vagrant
+*.retry

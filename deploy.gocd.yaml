@@ -36,3 +36,4 @@ pipelines:
                    source: build/version
                    destination: build
                - script: ./scripts/fetch-artifacts.sh
+               - script: ./scripts/deploy-uat.sh

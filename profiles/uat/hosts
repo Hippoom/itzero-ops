@@ -1,0 +1,2 @@
+[itzero-nodes]
+uat ansible_ssh_host=192.168.47.11 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant

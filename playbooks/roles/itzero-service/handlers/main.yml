@@ -1,0 +1,6 @@
+---
+- name: restart itzero
+  service:
+    name: itzero
+    state: restarted
+  become: true
