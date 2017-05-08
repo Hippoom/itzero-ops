@@ -41,4 +41,5 @@ pipelines:
                    destination: build
                - script: ./scripts/fetch-artifacts.sh
                - script: ./scripts/deploy-uat.sh
+               - script: ./scripts/fetch-images.sh
                - script: ./scripts/smoke.sh uat $(cat build/version) http://192.168.47.11 8080
