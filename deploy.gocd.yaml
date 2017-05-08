@@ -24,7 +24,7 @@ pipelines:
                - build:
                    source: build/version
                    destination: build
-                - test:
+               - test:
                    source: build/reports
                    destination: build
               tabs:
