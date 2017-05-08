@@ -24,8 +24,12 @@ pipelines:
                - build:
                    source: build/version
                    destination: build
+                - test:
+                   source: build/reports
+                   destination: build
               tabs:
                 build_info: build/version
+                test: build/reports/tests/smoke/index.html
               tasks:
                - script: rm -rf build # cleanup
                - fetch:
